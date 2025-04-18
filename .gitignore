@@ -7,7 +7,7 @@ target/
 ### STS ###
 .apt_generated
 .classpath
-./bankapp.pem
+bankapp.pem
 .factorypath
 .project
 .settings
