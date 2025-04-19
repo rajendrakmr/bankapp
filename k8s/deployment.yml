@@ -30,7 +30,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: MYSQL_DATABASE
-              name: config-map 
+              name: config-map
+        - name: SPRING_DATASOURCE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: banksecret
+            key: SPRING_DATASOURCE_PASSWORD
         resources:
           requests:
             memory: "512Mi"

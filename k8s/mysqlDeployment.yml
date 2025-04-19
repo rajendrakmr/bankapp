@@ -29,7 +29,7 @@ spec:
                   key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: config-map
                   key: MYSQL_DATABASE
           volumeMounts:
@@ -41,3 +41,18 @@ spec:
           persistentVolumeClaim:
             claimName: mysql-pvc
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: bankapp
+  labels:
+    app: mysql-deploy
+spec:
+  selector:
+    app: mysql-deploy
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
