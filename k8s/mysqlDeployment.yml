@@ -41,18 +41,3 @@ spec:
           persistentVolumeClaim:
             claimName: mysql-pvc
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-service
-  namespace: bankapp
-  labels:
-    app: mysql-deploy
-spec:
-  selector:
-    app: mysql-deploy
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
