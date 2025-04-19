@@ -55,7 +55,8 @@ metadata:
     app: bankapp-svc 
 spec:
   selector:
-    app: bankapp-deploy 
+    app: bankapp-deploy
+  type: NodePort 
   ports:
   - protocol: TCP
     port: 8080
