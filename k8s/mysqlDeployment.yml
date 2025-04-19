@@ -12,34 +12,34 @@ spec:
     matchLabels:
       app: mysql-deploy 
   template: 
-   metadata:
+    metadata:
       labels:
         app: mysql-deploy    
-  spec:
-    containers:
-    - name: mysql-deployment-container
-      image: mysql:latest
-      ports:  
-      - containerPort: 3306 
-    env:
-    - name: MYSQL_ROOT_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: banksecret
-          key: MYSQL_ROOT_PASSWORD
-    - name: MYSQL_DATABASE
-      valueFrom:
-        configMapRef:
-          name: config-map
-          key: MYSQL_DATABASE
-    volumeMounts:
-    - name: mysql-pv-storage
-      mountPath: /var/lib/mysql 
-      subPath: mysql-data 
-  volumes: 
-  - name: mysql-pv-storage 
-    persistentVolumeClaim:
-      claimName: mysql-pvc
+    spec:
+      containers:
+      - name: mysql-deployment-container
+        image: mysql:latest
+        ports:  
+        - containerPort: 3306 
+      env:
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: banksecret
+            key: MYSQL_ROOT_PASSWORD
+      - name: MYSQL_DATABASE
+        valueFrom:
+          configMapRef:
+            name: config-map
+            key: MYSQL_DATABASE
+      volumeMounts:
+      - name: mysql-pv-storage
+        mountPath: /var/lib/mysql 
+        subPath: mysql-data 
+    volumes: 
+    - name: mysql-pv-storage 
+      persistentVolumeClaim:
+        claimName: mysql-pvc
 
 --- 
 
