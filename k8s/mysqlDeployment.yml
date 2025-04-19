@@ -12,7 +12,9 @@ spec:
     matchLabels:
       app: mysql-deploy 
   template: 
-    app: mysql 
+   metadata:
+      labels:
+        app: mysql-deploy    
   spec:
     containers:
     - name: mysql-deployment-container
