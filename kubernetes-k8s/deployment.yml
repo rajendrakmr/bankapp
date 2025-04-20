@@ -20,6 +20,16 @@ spec:
       labels:
         app:  bankapp-deploy
     spec: 
+      initContainers:
+      - name: wait-for-mysql
+        image: busybox:1.28
+        command:
+          [
+            "sh",
+            "-c",
+            "until nc -z mysql-0.mysql-service 3306; do echo waiting for mysql; sleep 2; done"
+          ]
+
       containers:
       - name:  bankapp-deploy
         image:  rk0617/bankapp:latest
