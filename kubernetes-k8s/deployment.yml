@@ -35,11 +35,26 @@ spec:
             cpu: 100m
             memory: 100Mi 
         env:
-        - name: DB_HOST
+        - name: SPRING_DATASOURCE_URL
           valueFrom:
             configMapKeyRef:
-              name: bankapp-deploy
-              key: DB_HOST
+              name: configmap
+              key: SPRING_DATASOURCE_URL
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: SPRING_DATASOURCE_USERNAME
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: MYSQL_DATABASE
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: SPRING_DATASOURCE_PASSWORD
         ports:
         - containerPort:  80
           name:  bankapp-deploy 
