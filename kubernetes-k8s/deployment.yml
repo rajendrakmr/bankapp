@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  bankapp-deploy
-  namespace: default
+  namespace: bankapp-ns
   labels:
     app:  bankapp-deploy
 spec:
