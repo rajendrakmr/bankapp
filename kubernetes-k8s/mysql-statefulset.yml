@@ -21,7 +21,7 @@ spec:
         ports:
         - containerPort: 3306 
         volumeMounts:
-        - name: mysql-pv-storage
+        - name: mysql-data
           mountPath: /var/lib/mysql
           subPath: mysql-data
         env:
@@ -34,11 +34,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: MYSQL_DATABASE
-              name: configmap 
-      volumes:
-      - name: mysql-pv-storage
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+              name: configmap  
   volumeClaimTemplates:
   - metadata:
       name: mysql-data
