@@ -35,6 +35,10 @@ spec:
             configMapKeyRef:
               key: MYSQL_DATABASE
               name: configmap 
+      volumes:
+      - name: mysql-pv-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
   volumeClaimTemplates:
   - metadata:
       name: mysql-data
