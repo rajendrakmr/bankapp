@@ -52,5 +52,5 @@ spec:
               name: mysecret
               key: SPRING_DATASOURCE_PASSWORD
         ports:
-        - containerPort:  80 
+        - containerPort:  8080 
       restartPolicy: Always
