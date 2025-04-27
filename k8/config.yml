@@ -1,4 +1,4 @@
-kind: Config 
+kind: ConfigMap 
 apiVersion: v1 
 metadata:
   name: myconfig
