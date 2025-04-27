@@ -1,22 +1,25 @@
-apiVersion: apps/v1
-kind: StatefulSet
+kind: StatefulSet 
+apiVersion: apps/v1 
 metadata:
   name: mysql
+  labels:
+    app: mysql 
   namespace: bankapp-ns
-spec:
+  
+spec: 
+  serviceName: mysql-headless
+  replicas: 3
   selector:
     matchLabels:
-      app: mysql
-  serviceName: mysql-service
-  replicas: 1
+      app: mysql 
   template:
     metadata:
-      labels:
-        app: mysql
+      name: mysql 
+      labels: 
+        app: mysql 
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
-        - name: mysql
+        - name: mysql-container
           image: mysql:latest
           ports:
             - containerPort: 3306
@@ -26,20 +29,17 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
-                secretKeyRef:
-                  name: mysecret
+                secretKeyRef: 
+                  name: secrets 
                   key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: configmap
                   key: MYSQL_DATABASE
-  volumeClaimTemplates:
-    - metadata:
-        name: mysql-data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        storageClassName: standard
-        resources:
-          requests:
-            storage: 10Gi
+                  name: myconfig
+    volumes: 
+      - name: mysql-data 
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+
+
