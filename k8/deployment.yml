@@ -25,24 +25,24 @@ spec:
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 configMapKeyRef:
-                  key: myconfig 
-                  name: SPRING_DATASOURCE_URL
+                  key: SPRING_DATASOURCE_URL 
+                  name: myconfig
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom: 
                 configMapKeyRef:
-                  key: myconfig
-                  name: SPRING_DATASOURCE_USERNAME
+                  key: SPRING_DATASOURCE_USERNAME 
+                  name: myconfig
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  key: myconfig
-                  name: MYSQL_DATABASE
+                  key: MYSQL_DATABASE
+                  name: myconfig
 
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: secrets
-                  name: SPRING_DATASOURCE_PASSWORD 
+                  key: SPRING_DATASOURCE_PASSWORD 
+                  name: secrets  
 
           resources:
             requests:
