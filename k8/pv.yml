@@ -13,7 +13,4 @@ spec:
   storageClassName: manual
   hostPath:
     path: /mnt/data/mysql
-    type: DirectoryOrCreate
-  nfs:
-    path: /tmp
-    server: 172.17.0.2
+    type: DirectoryOrCreate 
