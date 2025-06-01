@@ -9,8 +9,7 @@ spec:
   selector:
     app: bankapp-deploy
   type: NodePort
-  port:
+  ports:
     - protocol: TCP 
       targetPort: 8080
-      port: 8080 
-      nodePort: 30001
+      port: 8080  
