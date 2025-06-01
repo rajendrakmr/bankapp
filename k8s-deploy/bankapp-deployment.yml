@@ -19,17 +19,7 @@ spec:
       initContainers:
         - name: wait-for-mysql
           image: busybox:1.28
-          command:
-              - sh
-              - -c
-              - |
-                for i in $(seq 0 $((REPLICAS - 1))); do
-                  until nc -z mysql-std-${i}.mysql-headless 3306; do
-                    echo "Waiting for mysql-std-${i}..."
-                    sleep 2
-                  done
-                done
-
+          command: ["sh","-c","until nc -z mysql-std-0.mysql-headless 3306; do echo wait-for-mysql; sleep 2; done"]
       containers:
         - name: bankapp 
           image: rk0617/bank-app:latest
