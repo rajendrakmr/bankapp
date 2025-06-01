@@ -21,6 +21,8 @@ services:
   bankapp:
     image: rk0617/bank-app:latest
     container_name: bankapp 
+    networks:  
+      - bankapp
     environment:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/MYdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
