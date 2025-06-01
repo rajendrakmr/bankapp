@@ -1,8 +1,8 @@
-apiVersion: apps/v1 
-kind: StatefulSet 
-metadata: 
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
   name: mysql-std
-  namespace: bank-ns 
+  namespace: bank-ns
   labels:
     app: mysql-std
 spec:
@@ -17,29 +17,29 @@ spec:
         app: mysql-deploy
     spec:
       containers:
-        - name: mysql 
-          image: mysql:latest 
+        - name: mysql
+          image: mysql:latest
           ports:
-            - containerPort: 3306 
-          env: 
+            - containerPort: 3306
+          env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: MYSQL_ROOT_PASSWORD
                   name: banksecrets
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  key: MYSQL_DATABASE
                   name: bankconfig
+                  key: MYSQL_DATABASE
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
   volumeClaimTemplates:
     - metadata:
-      name: mysql-data
+        name: mysql-data
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]
         storageClassName: standard
         resources:
           requests:
