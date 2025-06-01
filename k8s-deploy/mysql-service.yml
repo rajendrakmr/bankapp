@@ -4,7 +4,7 @@ metadata:
   name: mysql-service 
   namespace: bank-ns 
   labels: 
-    app: mysql-service 
+    app: mysql-headless 
 spec:
   type: ClusterIP
   selector:

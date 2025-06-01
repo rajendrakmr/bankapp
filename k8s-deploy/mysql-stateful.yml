@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mysql-std
 spec:
-  serviceName: mysql-service
+  serviceName: mysql-headless
   replicas: 2
   selector:
     matchLabels:
