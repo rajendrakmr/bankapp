@@ -4,8 +4,8 @@ services:
     image: mysql
     container_name: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD= TEST@123
-      - MYSQL_DATABASE = MYdb
+      - MYSQL_ROOT_PASSWORD=TEST@123
+      - MYSQL_DATABASE=MYdb
     volumes:
       - bankapp-volume:/var/lib/mysql 
     networks:  
