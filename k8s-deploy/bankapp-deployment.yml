@@ -1,0 +1,55 @@
+kind: Deployment 
+apiVersion: apps/v1
+metadata:
+  name: bankapp
+  namespace: bank-ns 
+  labels: 
+    app: bank-app
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: bankapp-deploy
+  template:
+    metadata:
+      name: bank-app
+      labels:
+        app: bankapp-deploy  
+    spec:
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox:1.28
+          command: ["sh","-c","until nc -z mysql-0.mysql-service 3306; do echo wait-for-mysql; sleep 2; done"]
+      containers:
+        - name: bankapp 
+          image: rk0617/bank-app:latest
+          ports:
+            - containerPort: 8080 
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_DATASOURCE_URL
+                  name: bankconfig
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_DATASOURCE_USERNAME
+                  name: bankconfig 
+            - name: MYSQL_DATABASE 
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_DATABASE 
+                  name: bankconfig
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: SPRING_DATASOURCE_PASSWORD
+                  name: banksecrets
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
