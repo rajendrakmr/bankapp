@@ -54,3 +54,21 @@ spec:
             limits:
               cpu: 200m
               memory: 256Mi
+
+
+---
+kind: Service
+apiVersion: v1 
+metadata:
+  name: bank-service 
+  namespace: bank-ns 
+  labels:
+    app: bank-svc 
+spec:
+  selector:
+    app: bankapp-deploy
+  type: NodePort
+  ports:
+    - protocol: TCP 
+      targetPort: 8080
+      port: 8080  

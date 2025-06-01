@@ -4,8 +4,7 @@ metadata:
   name: mysql
   labels:
     app: mysql 
-  namespace: bankapp-ns
-  
+  namespace: bankapp-ns 
 spec: 
   serviceName: mysql-headless
   replicas: 3
