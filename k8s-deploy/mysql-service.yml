@@ -13,3 +13,7 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: 3306
+
+
+# kubectl apply -f namespace.yml -f config-map.yml -f secretes.yml -f pv.yml -f pvc.yml
+# kubectl apply -f mysql-stateful.yml -f mysql-service.yml -f bankapp-deployment.yml -f bankapp-service.yml
