@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - megaproject.trainwithshubham.com
-    secretName: bankapp-tls-secret  # Cert-Manager will manage this
+    secretName: bankapp-tls-secret   
   rules:
   - host: megaproject.trainwithshubham.com
     http:
